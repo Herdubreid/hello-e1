@@ -35,4 +35,15 @@ $ ionic serve
 This command will build the app and open it up in your default browser.
 
 ### Explore the code
-To explore the code, open the project folder in Visual Code and expand the `src` folder, which is where our source code lives.  
+To explore the code, open the project folder in Visual Code and expand the `src` folder, which is where our source code lives.
+
+### The `app` folder
+Let's start by looking at the `app` folder, which contains definitions and initialisation code for our app (often referred to as the plumbings). The two files of interest are:
+
+* `app.module.ts` : Contains definitions of modules, pages and providers for our app  
+* `app.component.ts` : The closest thing to traditional `main` function, this is where initialisation normally takes place, such as menu definition
+
+Once established, the content of the `app` folder is typically only changed if new components, like page or provider is added, or new initialisation is needed.
+
+### The `e1` folder
+
