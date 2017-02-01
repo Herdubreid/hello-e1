@@ -1,8 +1,5 @@
 <!--
-  Generated template for the About page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+  About
 -->
 <ion-header>
   <ion-toolbar>
@@ -13,9 +10,14 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-item text-center text-wrap>A sample E1 Service Module Application</ion-item>
+  <ion-item text-center text-wrap no-lines>
+    <h4>A Sample E1 Service Module Application</h4>
+    <a ion-item href='https://herdubreid.github.io/hello-e1/'>Check me on Github for more.</a>
+  </ion-item>
+  <ion-item-divider>
+    SETTINGS
+  </ion-item-divider>
   <ion-item *ngIf="errorMsg" color="danger" text-center text-wrap>{{ errorMsg }}</ion-item>
   <form (ngSubmit)="connect()">
     <ion-item>
