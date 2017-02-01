@@ -1,0 +1,60 @@
+<!--
+  Generated template for the About page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>About Hello E1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item text-center text-wrap>A sample E1 Service Module Application</ion-item>
+  <ion-item *ngIf="errorMsg" color="danger" text-center text-wrap>{{ errorMsg }}</ion-item>
+  <form (ngSubmit)="connect()">
+    <ion-item>
+      <ion-label stacked>
+        Application Interface Server Url
+      </ion-label>
+      <ion-input [(ngModel)]="serverDef.baseUrl" name="baseUrl" placeholder='https://server:port/' type='url' required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Version
+      </ion-label>
+      <div item-content>
+        {{ aisVersion | async }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Default Environment
+      </ion-label>
+      <div item-content>
+        {{ defaultEnvironment | async }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Default Username:
+      </ion-label>
+      <ion-input [(ngModel)]="serverDef.username" name="username" placeholder="optional" type="text">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Default Pasword:
+      </ion-label>
+      <ion-input [(ngModel)]="serverDef.password" name="password" placeholder="optional" type="password">
+      </ion-input>
+    </ion-item>
+    <button ion-button full type="submit">Connect</button>
+  </form>
+</ion-content>

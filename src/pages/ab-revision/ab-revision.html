@@ -1,0 +1,94 @@
+<!--
+  A/B Revisions
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>A/B Revision</ion-title>
+    <ion-buttons right>
+      <ion-spinner name="dots" [color]="(status | async) === 'STATUS_ERROR' ? 'danger' : (status | async) === 'STATUS_OFF' ? '' : 'primary'"
+        [paused]="(status | async) !== 'STATUS_BUSY'"></ion-spinner>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>
+        Address Number
+      </ion-label>
+      <div item-content>
+        {{ row.mnAddressNumber_21.value }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Name
+      </ion-label>
+      <div item-content>
+        {{ row.sAlphaName_50.value }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Mailing Name
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtMailingName_38.value }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Search Type
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtSearchType_36.value }}
+        {{ ( data | async )?.txtSearchType_36.assocDesc }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Business Unit
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtBusinessUnit_62.value }}
+        {{ ( data | async )?.txtBusinessUnit_62.assocDesc }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Address
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtAddressLine1_40.value }}
+        {{ ( data | async )?.txtAddressLine2_42.value }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        City
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtCity_52.value }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        State
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtState_54.value }}
+        {{ ( data | async )?.txtState_54.assocDesc }}
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>
+        Contry
+      </ion-label>
+      <div item-content>
+        {{ ( data | async )?.txtCountry_56.value }}
+        {{ ( data | async )?.txtCountry_56.assocDesc }}
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

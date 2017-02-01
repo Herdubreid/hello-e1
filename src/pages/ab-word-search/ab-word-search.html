@@ -1,0 +1,33 @@
+<!--
+  A/B Word Search
+-->
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-searchbar (ionInput)="search($event)" placeholder="A/B Word Search">
+    </ion-searchbar>
+    <ion-buttons right>
+      <ion-spinner name="dots" [color]="(status | async) === 'STATUS_ERROR' ? 'danger' : (status | async) === 'STATUS_OFF' ? '' : 'primary'" [paused]="(status | async) !== 'STATUS_BUSY'"></ion-spinner>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item text-wrap *ngFor="let row of rowset | async" (click)="select(row)">
+      <ion-label text-wrap>
+        {{ row.sAlphaName_50.value }}
+      </ion-label>
+      <div item-content>
+        {{ row.mnAddressNumber_21.value }}
+      </div>
+    </button>
+  <ion-item text-right no-lines>
+    <ion-badge>
+      {{ (summary | async) ? (summary | async).records : 0 }} records returned
+    </ion-badge>
+  </ion-item>
+  </ion-list>
+</ion-content>
