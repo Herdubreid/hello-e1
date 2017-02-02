@@ -15,7 +15,7 @@ The key `Hello E1` features are:
 ### Prerequisite
 First, have the latest recommended versions of [Node](https://nodejs.org) and [Visual Studio Code](https://code.visualstudio.com/download) installed.
 
-Install Ionic with (might need `sudo` or administrator permission):
+Install Ionic (might need `sudo` or administrator permission):
 
 ```bash
 $ npm install -g cordova ionic
@@ -65,7 +65,7 @@ In our app, the user has only two pages to choose from, defined by:
     ];
 ```
 
-The opening page, called the `rootPage`, is set to either page depending on the app state (see Storage below for details).
+The opening page, called the `rootPage`, is set to either page depending on the whether the app has already been configured with AIS url or not.
 
 #### The 'A/B Word Search' page
 The 'A/B Word Search' is our main page, a search & select like E1 form that uses `P01BDWRD` at the back-end.  The page has only two functions:
@@ -232,3 +232,6 @@ export interface IAbRevisionResponse extends IFormResponse {
 ```
 
 The difference is that instead of extending the `IRow` interface, we extend `IFormData` with a definition of the fields we are interested in.  
+
+### So what's next?
+I'll let this simmer for a while and head for the pub...
