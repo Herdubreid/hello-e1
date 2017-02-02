@@ -78,5 +78,11 @@ The only function of the page is to make `AbRevisionRequest` to E1 and present t
 #### The 'About' page
 The about page is where we configure our AIS url and optional user name and password and the page only function is to validate and save the url.
 
+### The `storage` folder
+Before getting to the `e1` stuff, let's quickly look at the `storage` folder.
+Our storage requirement are quite simple, with the definition in `defs.ts` and related functions in `service.ts`.  
+The storage concept is document oriented as opposite to tables and rows with simple `get` and `set` functions.  This makes perfect sense since a mobile app typically only needs to store configuration and intermittent data.  Any serious data-crunching is the responsibility of the back-end.  The speed of flash-storage should also make any complex database algorithms an overkill.  
+There is one 'huh...' thing here though for anyone new to `Javascript`, and that's the peculiar `Promise` type.  I don't quite understand this myself, just starting to learn how to use it and putting my faith in all those `Javascript` people.
+
 ### The `e1` folder
 
