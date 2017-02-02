@@ -8,7 +8,7 @@ The key `Hello E1` features are:
 * An A/B Word Search page that demonstrates search & select requests  
 * An A/B Revision page that demonstrate inspect requests (read-only)  
 
-<a href='https://play.google.com/store/apps/details?id=io.celin.helloe1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height='58px' width='150px src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=io.celin.helloe1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height='58px' width='150px' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
 ### Prerequisite
 First, have the latest recommended versions of [Node](https://nodejs.org) and [Visual Studio Code](https://code.visualstudio.com/download) installed.
