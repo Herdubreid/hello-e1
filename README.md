@@ -85,4 +85,150 @@ The storage concept is document oriented as opposite to tables and rows with sim
 There is one 'huh...' thing here though for anyone new to `Javascript`, and that's the peculiar `Promise` type.  I don't quite understand this myself, just starting to learn how to use it and putting my faith in all those `Javascript` people.
 
 ### The `e1` folder
+This is where the interesting stuff is -- that is if you come from E1 development background.  
+Let's look at the files one by one.
 
+#### The `e1-helper` file
+An E1 app can be in one of three authenticated state:
+
+* Not authenticated yet (no AIS token)  
+* Authentication timed-out (AIS token expired)
+* Authenticated (valid AIS token)
+
+To save us from having to test for the state every time we make a request, the `E1HelperService` does that for us, so we can boil our request to just a single statement.  For example, the `search` request of the 'A/B Word Search' page is:
+
+```typescript
+let search = new AbWordSearchRequest(searchEvent.target.value.trim() + '*');
+this.form.request = search;
+this.e1.call(this.form);
+```
+
+The first statement builds the request (see `ab-word-search` below) and the second assigns it to the `request` property of of the `FormService`, which is part of the `e1-service`.  
+The last statement then passes the `FormService` to the `call` function of the `E1HelperService` -- and we're done.  
+The 'A/B Revision' uses a slightly more elaborated statement:
+
+```typescript
+form.request = new AbRevisionRequest(this.row.mnAddressNumber_21.value);
+e1.call(form, {
+    success: () => {
+        this.data = store
+          .select<IAbRevisionFormData>('server', 'formResponse', 'fs_P01012_W01012A', 'data');
+    }
+});
+```
+
+The first statement builds the request as before (see `ab-revision` below) and assigns it (whether to combine the two into a single statement or not is a matter of preference, whatever is more readable does it for me).  
+The `call` statement however has additional parameter that instructs it what to do once successful, which is to capture the `data` part of the response.  
+This again is a syntax that might puzzle `Javascript` newbies -- and I'm talking from my own experience.  
+To try to explain this, lets look at the `call` signature second parameter's type, which is:
+
+```typescript
+export interface IServiceCallback {
+    success?: any;
+    error?: any;
+    done?: any;
+}
+```
+
+This can be read as a 'class with optional three functions, `success`, `error` and `done`'.  The `call` function will in return call each of these function upon successful execution, error and when it's done.  
+In fact, `Javascript` is full of these 'don't call me, I call you' patterns (`Promise` above is one of those).  And when you think it, this makes a lot of sense for a language that's designed to run on a single thread in a browser.  The last thing you want is for the user interface to 'hang' while waiting for some function to return, that again is waiting for a server to respond.  
+I like to think of this as the 'agent concept' -- which anyone who has ever applied for a job through a recruitment agency should appreciate (helps alleviate the initial frustration when trying to understand this).
+
+#### The `ab-word-search` file
+This is the definition we need for the `P01BDWRD` request and subsequent response unpacking.  
+Lets first look at the request:
+
+```typescript
+export class AbWordSearchRequest extends FormRequest {
+    constructor(search: string) {
+        super();
+        this.formName = 'P01BDWRD_W01BDWRDA';
+        this.formServiceAction = 'R';
+        this.formActions = [
+            {
+                controlID: '18',
+                command: 'SetControlValue',
+                value: search
+            },
+            {
+                controlID: 15,
+                command: 'DoAction'
+            }
+        ];
+    }
+}
+```
+
+The `FormRequest` class we extend (or inherit) is packed with the most of the properties we need to make a form request.  At minimum we need to provide it with `.formName` and `.formServiceAction`  In addition we need to set the 'Word Search' parameter which is `controlID` 18 and then press the 'Find' button which is `controlID` 15.
+
+The second definition is for the form response:
+
+```typescript
+export interface IAbWordSearchRow extends IRow {
+    mnAddressNumber_21: IValue;
+    sAlphaName_50: IValue;
+    sPrefix_29: IValue;
+    sPhoneNumber_30: IValue;
+    sAddressLine1_31: IValue;
+    sCity_32: IValue;
+}
+
+export interface IAbWordSearchResponse extends IFormResponse {
+    fs_P01BDWRD_W01BDWRDA: IForm<IFormData<IAbWordSearchRow>>
+}
+```
+
+We have a number of predefined interfaces like `IFormResponse`, `IForm`, `IFormData`, `IRow` and `IValue` that provide us with 'scaffolding'.  At minimum, we can define a form response as:
+
+```typescript
+export interface ISomeForm extends IFormResponse {
+    fs_APP_FORM : IForm<IFormData<IRow>>
+}
+```
+
+Where 'APP' is the application name and 'FORM' the form name.  The above definition doesn't say anything about the form or grid row fields we expect from the response.  To add a definition for grid row fields, we extend the `IRow` interface and replace it in the `IFormData<IMyGrid>` definition.  
+It should be noted that the response definition is not a requirement, but more of a guard to verify that we are getting the response we expected and helpful when we need to access the members in `.ts` files (the `.html` just throw an error or ignore incorrect members).
+
+####  The `ab-revision` file
+There are couple of differences in the `P01012_W01012A` request and response to point out.  First lets look a the request:
+
+```javascript
+        this.formInputs = [
+            {
+                id: '12',
+                value: ab
+            }
+        ];
+```
+
+We pass the address book number as a form input `id` 12.  We don't do any form actions, but rely on the form's logic to do the rest for us.
+
+The second difference is that instead of grid row fields, we are now fetching form fields.  
+
+```javascript
+export interface IExValue extends IValue {
+    assocDesc: string;
+}
+
+export interface IAbRevisionFormData extends IFormData<IRow> {
+    txtAlphaName_28: IValue;
+    txtAddressNumber_21: IValue;
+    txtMailingName_38: IValue;
+    txtSearchType_36: IExValue;
+    txtABN_34: IValue;
+    txtAddressLine3_44: IValue;
+    txtAddressLine2_42: IValue;
+    txtAddressLine1_40: IValue;
+    txtCountry_56: IExValue;
+    txtState_54: IExValue;
+    txtCity_52: IValue;
+    txtPostalCode_50: IValue;
+    txtBusinessUnit_62: IExValue;
+}
+
+export interface IAbRevisionResponse extends IFormResponse {
+    fs_P01012_W01012A: IForm<IAbRevisionFormData>
+}
+```
+
+The difference is that instead of extending the `IRow` interface, we extend `IFormData` with a definition of the fields we are interested in.  
