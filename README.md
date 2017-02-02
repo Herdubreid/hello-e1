@@ -191,7 +191,7 @@ export interface ISomeForm extends IFormResponse {
 ```
 
 Where 'APP' is the application name and 'FORM' the form name.  The above definition doesn't say anything about the form or grid row fields we expect from the response.  To add a definition for grid row fields, we extend the `IRow` interface and replace it in the `IFormData<IMyGrid>` definition.  
-It should be noted that the response definition is not a requirement, but more of a guard to verify that we are getting the response we expected and helpful when we need to access the members in `.ts` files (the `.html` just throw an error or ignore incorrect members).
+It should be noted that the response definition is not a requirement, but more of a guard to verify that we are getting the response we expected and helpful when we need to access the members in `.ts` files (the `.html` just throws an error or ignores incorrect members).
 
 ####  The `ab-revision` file
 There are couple of differences in the `P01012_W01012A` request and response to point out.  First lets look a the request:
