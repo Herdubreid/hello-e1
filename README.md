@@ -38,7 +38,7 @@ This command will build the app and open it up in your default browser.
 To explore the code, open the project folder in Visual Code and expand the `src` folder, which is where our source code lives.
 
 ### The `app` folder
-Let's start by looking at the `app` folder, which contains definitions and initialisation code for our app (often referred to as the plumbings). The two files of interest are:
+Let's start with a quick look at the `app` folder. This is where definitions and initialisation code for our app is stored (often referred to as the plumbings). The two files of interest are:
 
 * `app.module.ts` : Contains definitions of modules, pages and providers for our app  
 * `app.component.ts` : The closest thing to traditional `main` function, this is where initialisation normally takes place, such as menu definition
@@ -50,6 +50,20 @@ The pages is where user interaction happens and subsequently the main functional
 A page can be thought of like forms in E1, providing a certain functionality and interconnecting with other pages.
 
 ![App Overview Diagram](docs/app-overview.png)
+
+The menu, as defined in `app.components.ts`, controls what pages the user has access to.  
+In our app, the user has only two pages to choose from, defined by:
+
+```typescript
+    this.pages = [
+      { title: 'A/B Word Search', component: AbWordSearchPage },
+      { title: 'About', component: AboutPage }
+    ];
+```
+
+The opening page, called the `rootPage`, is set to either page depending on the app state, which I'll come back to later.
+
+
 
 ### The `e1` folder
 
