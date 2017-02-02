@@ -45,5 +45,11 @@ Let's start by looking at the `app` folder, which contains definitions and initi
 
 Once established, the content of the `app` folder is typically only changed if new components, like page or provider is added, or new initialisation is needed.
 
+### The `pages` folder
+The pages is where user interaction happens and subsequently the main functional area of our app.  
+A page can be thought of like forms in E1, providing a certain functionality and interconnecting with other pages.
+
+![App Overview Diagram](https://sketchboard.me/hAkcmqRwEwmq)
+
 ### The `e1` folder
 
