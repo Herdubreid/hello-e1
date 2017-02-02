@@ -61,18 +61,22 @@ In our app, the user has only two pages to choose from, defined by:
     ];
 ```
 
-The opening page, called the `rootPage`, is set to either page depending on the app state, which I'll come back to later.
+The opening page, called the `rootPage`, is set to either page depending on the app state (see Storage below for details).
 
 #### The 'A/B Word Search' page
 The 'A/B Word Search' is our main page, a search & select like E1 form that uses `P01BDWRD` at the back-end.  The page has only two functions:
 
-* `search` : Monitor the search-box entry and once it has 3 or more characters, make `AbWordSearchRequest' to E1.  
+* `search` : Monitor the search-box entry and once it has 3 or more characters, make `AbWordSearchRequest` to E1 (see E1 below for details).  
 * `select` : Call the 'A/B Revision' page for the selected address number.
 
 The remaining code monitors E1 response and presents it on the page.
 
-### The 'A/B Revision' page
-This page is read-only 
+#### The 'A/B Revision' page
+This page uses `P01012_W01012A` at the back-end (and takes it name from it -- in case 'Revision' for a read-only page is confusing).  
+The only function of the page is to make `AbRevisionRequest` to E1 and present the result.
+
+#### The 'About' page
+The about page is where we configure our AIS url and optional user name and password and the page only function is to validate and save the url.
 
 ### The `e1` folder
 
