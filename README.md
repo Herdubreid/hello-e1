@@ -49,7 +49,7 @@ Once established, the content of the `app` folder is typically only changed if n
 The pages is where user interaction happens and subsequently the main functional area of our app.  
 A page can be thought of like forms in E1, providing a certain functionality and interconnecting with other pages.
 
-![App Overview Diagram](https://sketchboard.me/hAkcmqRwEwmq)
+![App Overview Diagram](docs/app-overview.png)
 
 ### The `e1` folder
 
