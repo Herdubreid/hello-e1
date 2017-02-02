@@ -76,7 +76,7 @@ This page uses `P01012_W01012A` at the back-end (and takes it name from it -- in
 The only function of the page is to make `AbRevisionRequest` to E1 and present the result.
 
 #### The 'About' page
-The about page is where we configure our AIS url and optional user name and password and the page only function is to validate and save the url.
+The about page is where we configure our AIS url and optional user name and password and its only function is to validate and save the url.
 
 ### The `storage` folder
 Before getting to the `e1` stuff, let's quickly look at the `storage` folder.
