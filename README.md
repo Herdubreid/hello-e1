@@ -276,7 +276,7 @@ The code for our `ab-revision` is similar with interest in different part of the
 ```typescript
         this.data = store
           .select<IAbRevisionFormData>('server', 'formResponse', 'fs_P01012_W01012A', 'data');
- ```
+```
 
  And the presentation on `ab-revision.html` is similarly:
 
