@@ -237,7 +237,7 @@ The difference is that instead of extending the `IRow` interface, we extend `IFo
 Finally, let's look at how we present the response.  
 This is where Redux comes into play.  If you run the app in Chrome with the `Redux DevTools` extension, you should be able to see something like this:  
 ![Redux DevTools](docs/redux-devtools.png)  
-The response from our requests is kept in the Redux Store and we only need to add some code to extract the part we want to present.  The 'agent concept' is a perfect fit here because we're not interested until the data has arrived, and we use `Observer` type to look after this (think of it the as the recruitment agent who waits by the phone for a prospective employer to respond -- and then lets us know).  
+The response from our requests is kept in the Redux Store and we only need to add some code to extract the part we want to present.  The 'agent concept' is a perfect fit here because we're not interested until the data has arrived, and we use `Observer` type to look after this (think of it as the recruitment agent who waits by the phone for a prospective employer to respond -- and then lets us know).  
 Our `ab-word-search` is only interested in the grid rows from `fs_P01BDWRD_W01BDWRDA` and this is how we access it:
 
 ```typescript
@@ -268,10 +268,10 @@ Now we can open our `ab-word-search.html` file and fill in the presentation:
 ```
 
 The `*ngFor="let row of rowset | async"` statement is an [Angular](https://angular.io/docs/ts/latest/) `for` statement where it repeats the `<button>` element for every element of our `rowset` (remember our agent by the phone).  
-The `| async` pipe syntax is need to indicate that this an `asyncrhonous` variable.  
+The `| async` pipe syntax is needed to indicate that this an `asyncrhonous` variable.  
 We then display the `sAlphaName_50` and `mnAddressNumber_21` values for each row.
 
-The code for our `ab-revision` is similar, only interested in different information:
+The code for our `ab-revision` is similar with interest in different part of the response:
 
 ```typescript
         this.data = store
@@ -291,7 +291,7 @@ The code for our `ab-revision` is similar, only interested in different informat
     </ion-item>
 ```
 
-With the exception of:
+The exception is:
 
 ```html
       <div item-content>
@@ -303,7 +303,7 @@ With the exception of:
       </div>
 ```
 
-The `row` member is a normal variable (no agent involved), that was passed from the `ab-word-search` page.
+The `row` member is a normal variable (no agent involved), that was passed from the `ab-word-search` page, so we don't need the `| async` pipe.
 
 ## Conclusion
-This concludes my `Hello E1` introduction and I hope this has been informative.
+This concludes my `Hello E1` introduction and I hope it has been informative.
