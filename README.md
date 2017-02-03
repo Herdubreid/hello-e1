@@ -233,5 +233,77 @@ export interface IAbRevisionResponse extends IFormResponse {
 
 The difference is that instead of extending the `IRow` interface, we extend `IFormData` with a definition of the fields we are interested in.  
 
-### So what's next?
-I'll let this simmer for a while and head for the pub...
+### Presenting the response
+Finally, let's look at how we present the response.  
+This is where Redux comes into play.  If you run the app in Chrome with the `Redux DevTools` extension, you should be able to see something like this:  
+![Redux DevTools](docs/redux-devtools.png)  
+The response from our requests is kept in the Redux Store and we only need to add some code to extract the part we want to present.  The 'agent concept' is a perfect fit here because we're not interested until the data has arrived, and we use `Observer` type to look after this (think of it the as the recruitment agent who waits by the phone for a prospective employer to respond -- and then lets us know).  
+Our `ab-word-search` is only interested in the grid rows from `fs_P01BDWRD_W01BDWRDA` and this is how we access it:
+
+```typescript
+  rowset: Observable<IAbWordSearchRow[]>  // <-- declare an Observable member
+...
+    this.rowset = store
+      .select<IAbWordSearchRow[]>(...GRID_DATA, 'rowset');  // <-- assign it to the grid rows
+```
+
+The `...GRID_DATA` is one of those clever `Javascript` syntax and it just says that we want to 'spread' the content of the `GRID_DATA` array, basically saves us from having to re-type:
+
+```typescript
+    this.rowset = store
+      .select<IAbWordSearchRow[]>('server', 'formResponse', 'fs_P01BDWRD_W01BDWRDA', 'data', 'gridData', 'rowset');  // <-- assign it to the grid rows
+```
+
+Now we can open our `ab-word-search.html` file and fill in the presentation:
+
+```html
+    <button ion-item text-wrap *ngFor="let row of rowset | async" (click)="select(row)">
+      <ion-label text-wrap>
+        {{ "{{ row.sAlphaName_50.value "}}}}
+      </ion-label>
+      <div item-content>
+        {{ "{{ row.mnAddressNumber_21.value "}}}}
+      </div>
+    </button>
+```
+
+The `*ngFor="let row of rowset | async"` statement is an [Angular](https://angular.io/docs/ts/latest/) `for` statement where it repeats the `<button>` element for every element of our `rowset` (remember our agent by the phone).  
+The `| async` pipe syntax is need to indicate that this an `asyncrhonous` variable.  
+We then display the `sAlphaName_50` and `mnAddressNumber_21` values for each row.
+
+The code for our `ab-revision` is similar, only interested in different information:
+
+```typescript
+        this.data = store
+          .select<IAbRevisionFormData>('server', 'formResponse', 'fs_P01012_W01012A', 'data');
+ ```
+
+ And the presentation on `ab-revision.html` is similarly:
+
+ ```html
+     <ion-item>
+      <ion-label stacked>
+        Mailing Name
+      </ion-label>
+      <div item-content>
+        {{ "{{ ( data | async )?.txtMailingName_38.value "}}}}
+      </div>
+    </ion-item>
+```
+
+With the exception of:
+
+```html
+      <div item-content>
+        {{ "{{ row.mnAddressNumber_21.value "}}}}
+      </div>
+      ...
+      <div item-content>
+        {{ "{{ row.sAlphaName_50.value "}}}
+      </div>
+```
+
+The `row` member is a normal variable (no agent involved), that was passed from the `ab-word-search` page.
+
+## Conclusion
+This concludes my `Hello E1` introduction and I hope this has been informative.
