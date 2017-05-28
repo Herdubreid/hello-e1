@@ -7,10 +7,7 @@ import './defs';
 const SERVER_CONFIG: string = 'SERVER_CONFIG';
 
 /*
-  Generated class for the Storage provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
+  Storage Service
 */
 @Injectable()
 export class StorageService {
