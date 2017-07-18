@@ -104,5 +104,6 @@ export class E1HelperService {
     public loadCtrl: LoadingController,
     public signon: SignonService
   ) {
+    signon.deviceName = 'SoapUI';
   }
 }

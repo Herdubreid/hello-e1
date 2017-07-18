@@ -1,11 +1,14 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { E1ServiceModule, serverAction, initialServerState } from 'e1-service';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { StorageService } from '../storage/service';
+import { DataService } from '../data/service';
 import { E1HelperService } from '../e1/e1-helper';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -20,7 +23,9 @@ import { AbRevisionPage } from '../pages/ab-revision/ab-revision';
     AbRevisionPage
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({ name: '__cworkorders' }),
     StoreModule.provideStore({ server: serverAction }, { server: initialServerState }),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     E1ServiceModule
@@ -33,9 +38,11 @@ import { AbRevisionPage } from '../pages/ab-revision/ab-revision';
     AbRevisionPage
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Storage,
-    StorageService,
+    DataService,
     E1HelperService
   ]
 })

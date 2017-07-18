@@ -10,7 +10,7 @@ const SERVER_CONFIG: string = 'SERVER_CONFIG';
   Storage Service
 */
 @Injectable()
-export class StorageService {
+export class DataService {
   get serverConfig(): Promise<IServerConfig> {
     return this.storage.get(SERVER_CONFIG);
   }

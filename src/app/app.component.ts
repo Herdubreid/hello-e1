@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { SignonService } from 'e1-service';
 
-import { StorageService } from '../storage/service';
+import { DataService } from '../data/service';
 import { AboutPage } from '../pages/about/about';
 import { AbWordSearchPage } from '../pages/ab-word-search/ab-word-search';
 
@@ -29,14 +30,16 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 
   constructor(
     public platform: Platform,
-    public storage: StorageService,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public storage: DataService,
     public signon: SignonService
   ) {
     this.initializeApp();

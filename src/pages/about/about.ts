@@ -3,7 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { SignonService } from 'e1-service';
 
-import { StorageService } from '../../storage/service';
+import { DataService } from '../../data/service';
 import { AbWordSearchPage } from '../ab-word-search/ab-word-search';
 /*
   E1 About Page
@@ -54,7 +54,7 @@ export class AboutPage {
     public navCtrl: NavController,
     public loading: LoadingController,
     public store: Store<any>,
-    public storage: StorageService,
+    public storage: DataService,
     public signon: SignonService
   ) {
     this.aisVersion = store.select('server', 'defaultconfig', 'aisVersion');
