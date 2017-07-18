@@ -39,7 +39,11 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+<<<<<<< HEAD
     public storage: DataService,
+=======
+    public storage: StorageService,
+>>>>>>> 35a3e59f41b5d498a8fa91a261d56cfe0ee3cb54
     public signon: SignonService
   ) {
     this.initializeApp();
