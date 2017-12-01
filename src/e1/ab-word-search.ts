@@ -1,5 +1,7 @@
 import { FormRequest, IFormResponse, IForm, IFormData, IRow, IValue } from 'e1-service';
 
+export const W01BDWRDA = 'fs_P01BDWRD_W01BDWRDA';
+
 export interface IAbWordSearchRow extends IRow {
     mnAddressNumber_21: IValue;
     sAlphaName_50: IValue;

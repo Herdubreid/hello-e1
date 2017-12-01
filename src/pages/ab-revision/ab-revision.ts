@@ -27,13 +27,13 @@ export class AbRevisionPage {
     public e1: E1HelperService
   ) {
     this.status = store
-      .select<string>('server', 'status');
+      .select('server', 'status');
     this.row = navParams.get('row');
     form.request = new AbRevisionRequest(this.row.mnAddressNumber_21.value);
     e1.call(form, {
       success: () => {
         this.data = store
-          .select<IAbRevisionFormData>('server', 'formResponse', 'fs_P01012_W01012A', 'data');
+          .select('server', 'formResponse', 'fs_P01012_W01012A', 'data');
       }
     });
   }

@@ -38,10 +38,10 @@ export class AbWordSearchPage {
     public form: FormService
   ) {
     this.status = store
-      .select<string>('server', 'status');
+      .select('server', 'status');
     this.summary = store
-      .select<ISummary>(...GRID_DATA, 'summary');
+      .select(...GRID_DATA, 'summary');
     this.rowset = store
-      .select<IAbWordSearchRow[]>(...GRID_DATA, 'rowset');
+      .select(...GRID_DATA, 'rowset');
   }
 }
