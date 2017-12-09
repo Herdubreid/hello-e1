@@ -3,7 +3,7 @@ A simple but fully fledged mobile E1 app build with the [Ionic Framework](http:/
 The key `Hello E1` features are:
 
 * A basic Ionic framework with paging menu  
-* The plumbings required for [Redux](http://redux.js.org) and [e1-service](https://www.npmjs.com/package/e1-service)  
+* The plumbings required for [@ngrx](https://github.com/ngrx/platform) and [e1-service](https://www.npmjs.com/package/e1-service)  
 * An About page that tests and stores the AIS url and optionally default user name and password  
 * An A/B Word Search page that demonstrates search & select requests  
 * An A/B Revision page that demonstrate inspect requests (read-only)  
