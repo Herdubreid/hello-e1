@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { IServerState, FormService, ISummary } from 'e1-service';
+import { FormService, ISummary } from 'e1-service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -10,9 +10,6 @@ import { AbRevisionPage } from '../ab-revision/ab-revision';
 /*
   A/B Word Search
 */
-const GRID_DATA = [
-  'server', 'formResponse', 'fs_P01BDWRD_W01BDWRDA', 'data', 'gridData'
-]
 @Component({
   selector: 'page-ab-word-search',
   templateUrl: 'ab-word-search.html'
@@ -33,15 +30,15 @@ export class AbWordSearchPage {
   }
   constructor(
     public navCtrl: NavController,
-    public store: Store<{ server: IServerState }>,
+    public store: Store<any>,
     public e1: E1HelperService,
     public form: FormService
   ) {
     this.status = store
-      .select('server', 'status');
+      .select(s => s.server.status);
     this.summary = store
-      .select(...GRID_DATA, 'summary');
+      .select('server', 'formResponse', 'fs_P01BDWRD_W01BDWRDA', 'data', 'gridData', 'summary');
     this.rowset = store
-      .select(...GRID_DATA, 'rowset');
+      .select('server', 'formResponse', 'fs_P01BDWRD_W01BDWRDA', 'data', 'gridData', 'rowset');
   }
 }

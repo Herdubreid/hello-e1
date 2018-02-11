@@ -6,7 +6,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-searchbar (ionInput)="search($event)" placeholder="A/B Word Search">
+    <ion-searchbar debounce="500" (ionInput)="search($event)" placeholder="A/B Word Search">
     </ion-searchbar>
     <ion-buttons right>
       <ion-spinner name="dots" [color]="(status | async) === 'STATUS_ERROR' ? 'danger' : (status | async) === 'STATUS_OFF' ? '' : 'primary'" [paused]="(status | async) !== 'STATUS_BUSY'"></ion-spinner>
