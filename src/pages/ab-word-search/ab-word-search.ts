@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FormService, ISummary } from 'e1-service';
+import { IServerState, FormService, ISummary } from 'e1-service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -33,7 +33,7 @@ export class AbWordSearchPage {
   }
   constructor(
     public navCtrl: NavController,
-    public store: Store<any>,
+    public store: Store<{ server: IServerState }>,
     public e1: E1HelperService,
     public form: FormService
   ) {
