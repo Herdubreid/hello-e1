@@ -22,7 +22,7 @@ export class AbWordSearchPage {
     this.navCtrl.push(AbRevisionPage, { row });
   }
   search(searchEvent) {
-    if (searchEvent.target.value && searchEvent.target.value.trim().length > 2) {
+    if (searchEvent.target.value) {
       let search = new AbWordSearchRequest(searchEvent.target.value.trim() + '*');
       this.form.request = search;
       this.e1.call(this.form);
