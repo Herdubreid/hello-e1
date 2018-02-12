@@ -2,7 +2,6 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fEI_j1WTzCI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-
 A simple but fully fledged mobile E1 app build with the [Ionic Framework](http://ionicframework.com/docs/) that can be used as a starting point for new E1 app development.  
 The key `Hello E1` features are:
 
@@ -26,7 +25,7 @@ $ npm install -g cordova ionic
 ```
 
 ### Installation
-Download the [source code](https://github.com/Herdubreid/hello-e1/archive/v0.0.1.zip) and extract it into your project folder (hello-e1 is the original project folder name).  
+Download the [source code](https://github.com/Herdubreid/hello-e1/archive/master.zip) and extract it into your project folder (hello-e1 is the original project folder name).  
 
 In the project folder, type:
 
