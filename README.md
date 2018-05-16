@@ -11,7 +11,7 @@ The key `Hello E1` features are:
 * An A/B Word Search page that demonstrates search & select requests  
 * An A/B Revision page that demonstrate inspect requests (read-only)  
 
-<a href="https://itunes.apple.com/us/app/chelloe1/id1201175119?ls=1&mt=8" style="display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a>
+<a href="https://itunes.apple.com/us/app/chelloe1/id1201175119?ls=1&mt=8" style="margin-left:10px;display:inline-block;overflow:hidden;background:url(//linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a>
 
 <a href='https://play.google.com/store/apps/details?id=io.celin.helloe1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height='58px' width='150px' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 
